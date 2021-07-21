@@ -1,0 +1,10 @@
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\bin\Debug\rozetka_desk.exe.config
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\bin\Debug\rozetka_desk.exe
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\bin\Debug\rozetka_desk.pdb
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\obj\Debug\rozetka_desk.csprojAssemblyReference.cache
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\obj\Debug\rozetka_desk.Form1.resources
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\obj\Debug\rozetka_desk.Properties.Resources.resources
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\obj\Debug\rozetka_desk.csproj.GenerateResource.cache
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\obj\Debug\rozetka_desk.csproj.CoreCompileInputs.cache
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\obj\Debug\rozetka_desk.exe
+C:\Users\Professional\source\repos\rozetka_desk\rozetka_desk\obj\Debug\rozetka_desk.pdb
