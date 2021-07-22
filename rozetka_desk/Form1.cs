@@ -16,7 +16,7 @@ namespace rozetka_desk
     public partial class Form1 : Form
     {
         UdpClient Client = new UdpClient(8081);
-        const string ip = "127.0.0.1";
+        const string ip = "192.168.1.15";
         const int port = 8081;
         int seconds = 0;
 
@@ -59,8 +59,15 @@ namespace rozetka_desk
                 while (udpSocket.Available > 0);
                 this.Invoke(new MethodInvoker(delegate
                 {
+                    string data_string = data.ToString();   
                     richTextBox_sensor_readings.Text += data;
-                    richTextBox_sensor_readings.Text += "\r\n";
+                    richTextBox_sensor_readings.Text += "\r\n";                
+                    richTextBox_amperage.Text += float.Parse(data_string, CultureInfo.InvariantCulture.NumberFormat) * 10;
+                    richTextBox_amperage.Text += "\r\n";
+                    richTextBox_sensor_readings.SelectionStart = richTextBox_sensor_readings.TextLength;
+                    richTextBox_amperage.SelectionStart = richTextBox_sensor_readings.TextLength;
+                    richTextBox_sensor_readings.ScrollToCaret();
+                    richTextBox_amperage.ScrollToCaret();             
                     this.chart1.Series[0].Points.AddXY(seconds, float.Parse(data.ToString(), CultureInfo.InvariantCulture.NumberFormat));
                 }));
             }
@@ -70,5 +77,6 @@ namespace rozetka_desk
         {
             seconds++;
         }
+
     }
 }
