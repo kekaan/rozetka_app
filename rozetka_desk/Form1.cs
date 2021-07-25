@@ -10,13 +10,14 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using rozetka_desk.Properties;
 
 namespace rozetka_desk
 {
     public partial class Form1 : Form
     {
         UdpClient Client = new UdpClient(8081);
-        const string ip = "192.168.1.15";
+        const string ip = "127.0.0.1";  //СМЕНИ НА СВОЙ IP
         const int port = 8081;
         int seconds = 0;
 
@@ -39,13 +40,13 @@ namespace rozetka_desk
 
         void Recieve(IAsyncResult res)
         {
+            bool isOn = false;
             var udpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
-
             var udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             udpSocket.Bind(udpEndPoint);
 
             while (true)
-            {
+            { 
                 var buffer = new byte[256];
                 var size = 0;
                 var data = new StringBuilder();
@@ -59,16 +60,30 @@ namespace rozetka_desk
                 while (udpSocket.Available > 0);
                 this.Invoke(new MethodInvoker(delegate
                 {
-                    string data_string = data.ToString();   
+                    float data_float = float.Parse(data.ToString(), CultureInfo.InvariantCulture.NumberFormat);
                     richTextBox_sensor_readings.Text += data;
                     richTextBox_sensor_readings.Text += "\r\n";                
-                    richTextBox_amperage.Text += float.Parse(data_string, CultureInfo.InvariantCulture.NumberFormat) * 10;
+                    richTextBox_amperage.Text += data_float * 10;
                     richTextBox_amperage.Text += "\r\n";
                     richTextBox_sensor_readings.SelectionStart = richTextBox_sensor_readings.TextLength;
                     richTextBox_amperage.SelectionStart = richTextBox_sensor_readings.TextLength;
                     richTextBox_sensor_readings.ScrollToCaret();
                     richTextBox_amperage.ScrollToCaret();             
-                    this.chart1.Series[0].Points.AddXY(seconds, float.Parse(data.ToString(), CultureInfo.InvariantCulture.NumberFormat));
+                    this.chart1.Series[0].Points.AddXY(seconds, data_float);
+                    if (data_float >= 0.1 && isOn == false)
+                    {
+                        isOn = true;
+                        richTextBox_log.Text += DateTime.Now + ": Устройство включено\r\n";
+                        pictureBox1.BackgroundImage = Resources.On;
+                    }
+                    else if (data_float < 0.1 && isOn == true)
+                    {
+                        isOn = false;
+                        richTextBox_log.Text += DateTime.Now + ": Устройство выключено\r\n";
+                        pictureBox1.BackgroundImage = Resources.Off;
+                    }
+
+
                 }));
             }
         }

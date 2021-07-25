@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.richTextBox_sensor_readings = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -39,26 +39,29 @@
             this.richTextBox_amperage = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.richTextBox_log = new System.Windows.Forms.RichTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
             // 
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(12, 12);
             this.chart1.Name = "chart1";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(719, 348);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -67,13 +70,13 @@
             // 
             this.richTextBox_sensor_readings.Location = new System.Drawing.Point(756, 31);
             this.richTextBox_sensor_readings.Name = "richTextBox_sensor_readings";
-            this.richTextBox_sensor_readings.Size = new System.Drawing.Size(88, 300);
+            this.richTextBox_sensor_readings.Size = new System.Drawing.Size(88, 329);
             this.richTextBox_sensor_readings.TabIndex = 1;
             this.richTextBox_sensor_readings.Text = "";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(756, 337);
+            this.button1.Location = new System.Drawing.Point(756, 459);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(182, 23);
             this.button1.TabIndex = 2;
@@ -91,7 +94,7 @@
             // 
             this.richTextBox_amperage.Location = new System.Drawing.Point(850, 31);
             this.richTextBox_amperage.Name = "richTextBox_amperage";
-            this.richTextBox_amperage.Size = new System.Drawing.Size(88, 300);
+            this.richTextBox_amperage.Size = new System.Drawing.Size(88, 329);
             this.richTextBox_amperage.TabIndex = 3;
             this.richTextBox_amperage.Text = "";
             // 
@@ -113,11 +116,31 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Сила тока, А";
             // 
+            // richTextBox_log
+            // 
+            this.richTextBox_log.Location = new System.Drawing.Point(12, 366);
+            this.richTextBox_log.Name = "richTextBox_log";
+            this.richTextBox_log.Size = new System.Drawing.Size(719, 116);
+            this.richTextBox_log.TabIndex = 6;
+            this.richTextBox_log.Text = "";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::rozetka_desk.Properties.Resources.Off;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(805, 366);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 374);
+            this.ClientSize = new System.Drawing.Size(996, 497);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.richTextBox_log);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox_amperage);
@@ -127,6 +150,7 @@
             this.Name = "Form1";
             this.Text = "ver_1";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,6 +165,8 @@
         private System.Windows.Forms.RichTextBox richTextBox_amperage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RichTextBox richTextBox_log;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
