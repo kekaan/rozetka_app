@@ -41,12 +41,11 @@ namespace rozetka_desk
 
         void Recieve(IAsyncResult res)
         {
+
             DB database = new DB();
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand("INSERT INTO 'events' ('id_device', 'time_event', 'id_type') VALUES ('1', @time, @type)", database.getConnection());
-           
-
+            MySqlCommand command = new MySqlCommand("INSERT INTO `events` (`id_event`, `id_device`, `time_event`, `id_type`) VALUES (NULL, '1', @datetime, @type);", database.getConnection());
             bool isOn = false;
             var udpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             var udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -77,31 +76,27 @@ namespace rozetka_desk
                     richTextBox_sensor_readings.ScrollToCaret();
                     richTextBox_amperage.ScrollToCaret();             
                     this.chart1.Series[0].Points.AddXY(seconds, data_float);
-                    command.Parameters.Add("@time", MySqlDbType.DateTime).Value = DateTime.Now;
+                    command.Parameters.Add("@datetime", MySqlDbType.DateTime).Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    //Включение прибора
                     if (data_float >= 0.1 && isOn == false)
                     {
                         isOn = true;
                         command.Parameters.Add("@type", MySqlDbType.Int32).Value = 1;
                         database.openConnection();
-                        if (command.ExecuteNonQuery() == 1)
-                            MessageBox.Show("ok");
-                        else
-                            MessageBox.Show("NEok");
+                        command.ExecuteNonQuery();
                         database.closeConnection();
-                        //richTextBox_log.Text += DateTime.Now + ": Устройство включено\r\n";
                         pictureBox1.BackgroundImage = Resources.On;
                     }
+
+                    //Отключение прибора
                     else if (data_float < 0.1 && isOn == true)
                     {
                         isOn = false;
                         command.Parameters.Add("@type", MySqlDbType.Int32).Value = 2;
                         database.openConnection();
-                        if (command.ExecuteNonQuery() == 1)
-                            MessageBox.Show("ok");
-                        else
-                            MessageBox.Show("NEok");
+                        command.ExecuteNonQuery();
                         database.closeConnection();
-                        //richTextBox_log.Text += DateTime.Now + ": Устройство выключено\r\n";
                         pictureBox1.BackgroundImage = Resources.Off;
                     }
                     command.Parameters.Clear();
@@ -114,25 +109,5 @@ namespace rozetka_desk
             seconds++;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Getting Connection ...");
-            MySqlConnection conn = DBUtils.GetDBConnection();
-
-            try
-            {
-                //Console.WriteLine("Openning Connection ...");
-
-                conn.Open();
-
-                //Console.WriteLine("Connection successful!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
-
-            Console.Read();
-        }
     }
 }
