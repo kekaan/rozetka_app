@@ -20,7 +20,6 @@ C:\Users\USER\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.pdb
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\bin\Debug\rozetka_desk.exe.config
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\bin\Debug\rozetka_desk.exe
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\bin\Debug\rozetka_desk.pdb
-C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.Form1.resources
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.Properties.Resources.resources
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.csproj.GenerateResource.cache
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.csproj.CoreCompileInputs.cache
@@ -39,5 +38,7 @@ C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\bin\Debug\K4os.Hash.xxHas
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\bin\Debug\MySql.Data.xml
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.csproj.CopyComplete
-C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.csproj.AssemblyReference.cache
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\bin\Debug\System.Buffers.dll
+C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.csproj.AssemblyReference.cache
+C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.MainForm1.resources
+C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.JournalForm.resources

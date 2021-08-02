@@ -15,14 +15,14 @@ using MySql.Data.MySqlClient;
 
 namespace rozetka_desk
 {
-    public partial class Form1 : Form
+    public partial class MainForm1 : Form
     {
         UdpClient Client = new UdpClient(8081);
         const string ip = "127.0.0.1";  //СМЕНИ НА СВОЙ IP
         const int port = 8081;
         int seconds = 0;
 
-        public Form1()
+        public MainForm1()
         {
             InitializeComponent();
         }
@@ -43,8 +43,8 @@ namespace rozetka_desk
         {
 
             DB database = new DB();
-            DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            //DataTable table = new DataTable();
+            //MySqlDataAdapter adapter = new MySqlDataAdapter();
             MySqlCommand command = new MySqlCommand("INSERT INTO `events` (`id_event`, `id_device`, `time_event`, `id_type`) VALUES (NULL, '1', @datetime, @type);", database.getConnection());
             bool isOn = false;
             var udpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -109,5 +109,11 @@ namespace rozetka_desk
             seconds++;
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            JournalForm journalForm = new JournalForm();
+            journalForm.Show();
+        }
     }
 }

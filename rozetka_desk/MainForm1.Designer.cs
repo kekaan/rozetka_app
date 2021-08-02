@@ -1,6 +1,6 @@
 ﻿namespace rozetka_desk
 {
-    partial class Form1
+    partial class MainForm1
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -39,8 +39,8 @@
             this.richTextBox_amperage = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.richTextBox_log = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -116,14 +116,6 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Сила тока, А";
             // 
-            // richTextBox_log
-            // 
-            this.richTextBox_log.Location = new System.Drawing.Point(12, 366);
-            this.richTextBox_log.Name = "richTextBox_log";
-            this.richTextBox_log.Size = new System.Drawing.Size(719, 116);
-            this.richTextBox_log.TabIndex = 6;
-            this.richTextBox_log.Text = "";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::rozetka_desk.Properties.Resources.Off;
@@ -134,20 +126,30 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(239, 459);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(320, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "НОЧАЛНЕК ХОЧИТ УВИДИЦ ЖУРНААААААААААААЛ";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // MainForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(996, 497);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.richTextBox_log);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox_amperage);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox_sensor_readings);
             this.Controls.Add(this.chart1);
-            this.Name = "Form1";
+            this.Name = "MainForm1";
             this.Text = "ver_1";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -165,8 +167,8 @@
         private System.Windows.Forms.RichTextBox richTextBox_amperage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox richTextBox_log;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
