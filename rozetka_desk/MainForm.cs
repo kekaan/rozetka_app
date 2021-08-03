@@ -15,14 +15,16 @@ using MySql.Data.MySqlClient;
 
 namespace rozetka_desk
 {
-    public partial class MainForm1 : Form
+    public partial class MainForm : Form
     {
-        UdpClient Client = new UdpClient(8081);
-        const string ip = "127.0.0.1";  //СМЕНИ НА СВОЙ IP
-        const int port = 8081;
-        int seconds = 0;
+        private UdpClient Client = new UdpClient(8081);
+        private const string ip = "127.0.0.1";  //СМЕНИ НА СВОЙ IP
+        private const int port = 8081;
+        private int seconds = 0;
+        private MySqlCommand command = null;
+        private DB database;
 
-        public MainForm1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -42,10 +44,8 @@ namespace rozetka_desk
         void Recieve(IAsyncResult res)
         {
 
-            DB database = new DB();
-            //DataTable table = new DataTable();
-            //MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand("INSERT INTO `events` (`id_event`, `id_device`, `time_event`, `id_type`) VALUES (NULL, '1', @datetime, @type);", database.getConnection());
+            database = new DB();
+            command = new MySqlCommand("INSERT INTO `events` (`id_event`, `id_device`, `time_event`, `id_type`) VALUES (NULL, '1', @datetime, @type);", database.getConnection());
             bool isOn = false;
             var udpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             var udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -109,11 +109,18 @@ namespace rozetka_desk
             seconds++;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void journal_button_Click(object sender, EventArgs e)
         {
             this.Hide();
             JournalForm journalForm = new JournalForm();
             journalForm.Show();
+        }
+
+        private void adding_button_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddingDeviceForm addingDeviceForm = new AddingDeviceForm();
+            addingDeviceForm.Show();
         }
     }
 }

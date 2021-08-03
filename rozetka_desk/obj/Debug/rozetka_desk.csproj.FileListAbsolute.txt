@@ -40,5 +40,6 @@ C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\bin\Debug\MySql.Data.xml
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.csproj.CopyComplete
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\bin\Debug\System.Buffers.dll
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.csproj.AssemblyReference.cache
-C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.MainForm1.resources
 C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.JournalForm.resources
+C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.AddingDeviceForm.resources
+C:\Users\Professional\Desktop\rozetka_app\rozetka_desk\obj\Debug\rozetka_desk.MainForm.resources

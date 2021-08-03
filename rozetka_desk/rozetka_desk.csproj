@@ -67,12 +67,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DB.cs" />
-    <Compile Include="MainForm1.cs">
+    <Compile Include="AddingDeviceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm1.Designer.cs">
-      <DependentUpon>MainForm1.cs</DependentUpon>
+    <Compile Include="AddingDeviceForm.Designer.cs">
+      <DependentUpon>AddingDeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DB.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="JournalForm.cs">
       <SubType>Form</SubType>
@@ -82,8 +88,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm1.resx">
-      <DependentUpon>MainForm1.cs</DependentUpon>
+    <EmbeddedResource Include="AddingDeviceForm.resx">
+      <DependentUpon>AddingDeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JournalForm.resx">
       <DependentUpon>JournalForm.cs</DependentUpon>
