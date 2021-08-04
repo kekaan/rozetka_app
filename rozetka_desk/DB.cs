@@ -10,7 +10,7 @@ namespace rozetka_desk
 {
     class DB
     {   
-        MySqlConnection connection = new MySqlConnection("Database=rozetka;Data Source=localhost;User Id=root;Password=root;");   
+        MySqlConnection connection = new MySqlConnection("Database=rozetka;Data Source=92.255.198.115;User Id=work;Password=1234;port=22870");   
 
         public void openConnection()
         {
