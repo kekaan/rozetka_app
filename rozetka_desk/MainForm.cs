@@ -18,7 +18,7 @@ namespace rozetka_desk
     public partial class MainForm : Form
     {
         private UdpClient Client = new UdpClient(8081);
-        private const string ip = "127.0.0.1";  //СМЕНИ НА СВОЙ IP
+        private const string ip = "192.168.1.103";  //СМЕНИ НА СВОЙ IP
         private const int port = 8081;
         private int seconds = 0;
         private MySqlCommand command = null;
