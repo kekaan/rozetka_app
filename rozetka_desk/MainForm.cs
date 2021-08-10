@@ -18,7 +18,7 @@ namespace rozetka_desk
     public partial class MainForm : Form
     {
         private UdpClient Client = new UdpClient(8081);
-        private const string ip = "192.168.1.103";  //СМЕНИ НА СВОЙ IP
+        private const string ip = "127.0.0.1";  //СМЕНИ НА СВОЙ IP
         private const int port = 8081;
         private int seconds = 0;
         private MySqlCommand command = null;
@@ -45,8 +45,10 @@ namespace rozetka_desk
         {
 
             database = new DB();
-            command = new MySqlCommand("INSERT INTO `events` (`id_event`, `id_device`, `time_event`, `id_type`) VALUES (NULL, '1', @datetime, @type);", database.getConnection());
+            command = new MySqlCommand("INSERT INTO `events` (`id_event`, `id_device`, `time_event`, `id_type`, `amperage`) VALUES (NULL, '1', @datetime, @type, @amper);", database.getConnection());
             bool isOn = false;
+            float amperage_sum = 0;
+            int device_on_data_recieved = 0;
             var udpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             var udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             udpSocket.Bind(udpEndPoint);
@@ -78,11 +80,18 @@ namespace rozetka_desk
                     this.chart1.Series[0].Points.AddXY(seconds, data_float);
                     command.Parameters.Add("@datetime", MySqlDbType.DateTime).Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
+                    if (isOn)
+                    {
+                        amperage_sum += data_float;
+                        device_on_data_recieved++;
+                    }
+
                     //Включение прибора
                     if (data_float >= 0.1 && isOn == false)
                     {
                         isOn = true;
                         command.Parameters.Add("@type", MySqlDbType.Int32).Value = 1;
+                        command.Parameters.Add("@amper", MySqlDbType.Float).Value = null;
                         database.openConnection();
                         command.ExecuteNonQuery();
                         database.closeConnection();
@@ -94,6 +103,9 @@ namespace rozetka_desk
                     {
                         isOn = false;
                         command.Parameters.Add("@type", MySqlDbType.Int32).Value = 2;
+                        command.Parameters.Add("@amper", MySqlDbType.Float).Value = amperage_sum/device_on_data_recieved;
+                        amperage_sum = 0;
+                        device_on_data_recieved = 0;
                         database.openConnection();
                         command.ExecuteNonQuery();
                         database.closeConnection();

@@ -33,7 +33,7 @@ namespace rozetka_desk
         {
             database = new DB();
             database.openConnection();
-            adapter1 = new MySqlDataAdapter("select id_event,name_device,time_event,name_type from `events` JOIN `devices` ON events.id_device = devices.id_device JOIN `event_types` ON events.id_type = event_types.id_type; ", database.getConnection());
+            adapter1 = new MySqlDataAdapter("select id_event,name_device,time_event,name_type,amperage from `events` JOIN `devices` ON events.id_device = devices.id_device JOIN `event_types` ON events.id_type = event_types.id_type; ", database.getConnection());
             adapter2 = new MySqlDataAdapter("select name_device from `devices`", database.getConnection());
             database.closeConnection();
             table = new DataTable();
@@ -62,7 +62,7 @@ namespace rozetka_desk
         {
             database = new DB();
             database.openConnection();
-            adapter1 = new MySqlDataAdapter("select id_event,name_device,time_event,name_type from `events` JOIN `devices` ON events.id_device = devices.id_device JOIN `event_types` ON events.id_type = event_types.id_type; ", database.getConnection());
+            adapter1 = new MySqlDataAdapter("select id_event,name_device,time_event,name_type,amperage from `events` JOIN `devices` ON events.id_device = devices.id_device JOIN `event_types` ON events.id_type = event_types.id_type; ", database.getConnection());
             adapter2 = new MySqlDataAdapter("select name_device from `devices`", database.getConnection());
             database.closeConnection();
             table = new DataTable();
