@@ -18,7 +18,7 @@ namespace rozetka_desk
     public partial class MainForm : Form
     {
         private UdpClient Client = new UdpClient(8081);
-        private const string ip = "127.0.0.1";  //СМЕНИ НА СВОЙ IP
+        private string ip = "127.0.0.1";
         private const int port = 8081;
         private int seconds = 0;
         private MySqlCommand command = null;
@@ -28,6 +28,16 @@ namespace rozetka_desk
         {
             InitializeComponent();
         }
+
+      /*  public static IPAddress GetIPAddress3()
+        {
+            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+            {
+                socket.Connect("8.8.8.8", 65530);
+                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                return endPoint.Address;
+            }
+        }*/
 
         private void button1_Click(object sender, EventArgs e)
         {
