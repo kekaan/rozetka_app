@@ -21,7 +21,8 @@ namespace rozetka_desk
         private string ip = "127.0.0.1";
         private const int port = 8081;
         private int seconds = 0;
-        private MySqlCommand command = null;
+        private MySqlCommand command1 = null;
+        private MySqlCommand command2 = null;
         private DB database;
 
         public MainForm()
@@ -47,7 +48,7 @@ namespace rozetka_desk
             }
             catch(Exception ex)
             {
-                richTextBox_sensor_readings.Text += ex.Message.ToString();
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -55,7 +56,8 @@ namespace rozetka_desk
         {
 
             database = new DB();
-            command = new MySqlCommand("INSERT INTO `events` (`id_event`, `id_device`, `time_event`, `id_type`, `amperage`) VALUES (NULL, '1', @datetime, @type, @amper);", database.getConnection());
+            command1 = new MySqlCommand("INSERT INTO `events` (`id_event`, `id_device`, `time_event`, `id_type`, `amperage`) VALUES (NULL, '1', @datetime, @type, @amper);", database.getConnection());
+            command2 = new MySqlCommand("INSERT INTO `data` (`id_data`, `date_data`, `value_data`) VALUES (NULL, @date, @value);", database.getConnection());
             bool isOn = false;
             float amperage_sum = 0;
             int device_on_data_recieved = 0;
@@ -78,50 +80,52 @@ namespace rozetka_desk
                 while (udpSocket.Available > 0);
                 this.Invoke(new MethodInvoker(delegate
                 {
-                    float data_float = float.Parse(data.ToString(), CultureInfo.InvariantCulture.NumberFormat);
-                    richTextBox_sensor_readings.Text += data;
-                    richTextBox_sensor_readings.Text += "\r\n";                
-                    richTextBox_amperage.Text += data_float * 10;
+                    float data_float_amper = float.Parse(data.ToString(), CultureInfo.InvariantCulture.NumberFormat) * 10;             
+                    richTextBox_amperage.Text += data_float_amper;
                     richTextBox_amperage.Text += "\r\n";
-                    richTextBox_sensor_readings.SelectionStart = richTextBox_sensor_readings.TextLength;
-                    richTextBox_amperage.SelectionStart = richTextBox_sensor_readings.TextLength;
-                    richTextBox_sensor_readings.ScrollToCaret();
+                    richTextBox_amperage.SelectionStart = richTextBox_amperage.TextLength;
                     richTextBox_amperage.ScrollToCaret();             
-                    this.chart1.Series[0].Points.AddXY(seconds, data_float);
-                    command.Parameters.Add("@datetime", MySqlDbType.DateTime).Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
+                    this.chart1.Series[0].Points.AddXY(seconds, data_float_amper);                 
+                    command2.Parameters.Add("@date", MySqlDbType.DateTime).Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    command2.Parameters.Add("@value", MySqlDbType.Float).Value = data_float_amper;
+                    database.openConnection();
+                    command2.ExecuteNonQuery();
+                    database.closeConnection();
                     if (isOn)
                     {
-                        amperage_sum += data_float;
+                        amperage_sum += data_float_amper;
                         device_on_data_recieved++;
                     }
 
                     //Включение прибора
-                    if (data_float >= 0.1 && isOn == false)
+                    if (data_float_amper >= 10 && isOn == false)
                     {
                         isOn = true;
-                        command.Parameters.Add("@type", MySqlDbType.Int32).Value = 1;
-                        command.Parameters.Add("@amper", MySqlDbType.Float).Value = null;
+                        command1.Parameters.Add("@datetime", MySqlDbType.DateTime).Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        command1.Parameters.Add("@type", MySqlDbType.Int32).Value = 1;
+                        command1.Parameters.Add("@amper", MySqlDbType.Float).Value = null;
                         database.openConnection();
-                        command.ExecuteNonQuery();
+                        command1.ExecuteNonQuery();
                         database.closeConnection();
                         pictureBox1.BackgroundImage = Resources.On;
                     }
 
                     //Отключение прибора
-                    else if (data_float < 0.1 && isOn == true)
+                    else if (data_float_amper < 10 && isOn == true)
                     {
                         isOn = false;
-                        command.Parameters.Add("@type", MySqlDbType.Int32).Value = 2;
-                        command.Parameters.Add("@amper", MySqlDbType.Float).Value = amperage_sum/device_on_data_recieved;
+                        command1.Parameters.Add("@datetime", MySqlDbType.DateTime).Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        command1.Parameters.Add("@type", MySqlDbType.Int32).Value = 2;
+                        command1.Parameters.Add("@amper", MySqlDbType.Float).Value = amperage_sum/device_on_data_recieved;
                         amperage_sum = 0;
                         device_on_data_recieved = 0;
                         database.openConnection();
-                        command.ExecuteNonQuery();
+                        command1.ExecuteNonQuery();
                         database.closeConnection();
                         pictureBox1.BackgroundImage = Resources.Off;
                     }
-                    command.Parameters.Clear();
+                    command1.Parameters.Clear();
+                    command2.Parameters.Clear();
                 }));
             }
         }

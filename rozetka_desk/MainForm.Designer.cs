@@ -33,11 +33,9 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.richTextBox_sensor_readings = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.richTextBox_amperage = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.journal_button = new System.Windows.Forms.Button();
             this.adding_button = new System.Windows.Forms.Button();
@@ -67,14 +65,6 @@
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
-            // richTextBox_sensor_readings
-            // 
-            this.richTextBox_sensor_readings.Location = new System.Drawing.Point(756, 31);
-            this.richTextBox_sensor_readings.Name = "richTextBox_sensor_readings";
-            this.richTextBox_sensor_readings.Size = new System.Drawing.Size(88, 329);
-            this.richTextBox_sensor_readings.TabIndex = 1;
-            this.richTextBox_sensor_readings.Text = "";
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(756, 459);
@@ -93,25 +83,16 @@
             // 
             // richTextBox_amperage
             // 
-            this.richTextBox_amperage.Location = new System.Drawing.Point(850, 31);
+            this.richTextBox_amperage.Location = new System.Drawing.Point(756, 31);
             this.richTextBox_amperage.Name = "richTextBox_amperage";
-            this.richTextBox_amperage.Size = new System.Drawing.Size(88, 329);
+            this.richTextBox_amperage.Size = new System.Drawing.Size(182, 329);
             this.richTextBox_amperage.TabIndex = 3;
             this.richTextBox_amperage.Text = "";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(753, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Напряжение, В";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(847, 12);
+            this.label2.Location = new System.Drawing.Point(753, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 5;
@@ -147,7 +128,7 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // MainForm1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,12 +137,10 @@
             this.Controls.Add(this.journal_button);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox_amperage);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.richTextBox_sensor_readings);
             this.Controls.Add(this.chart1);
-            this.Name = "MainForm1";
+            this.Name = "MainForm";
             this.Text = "ver_1";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -173,11 +152,9 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.RichTextBox richTextBox_sensor_readings;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.RichTextBox richTextBox_amperage;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button journal_button;

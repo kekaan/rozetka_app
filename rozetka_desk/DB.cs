@@ -24,7 +24,6 @@ namespace rozetka_desk
         }
         public MySqlConnection getConnection()
         {
-
             return connection;
         }
     }
